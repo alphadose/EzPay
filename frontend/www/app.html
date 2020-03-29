@@ -281,6 +281,86 @@
       </main>
     </div>
   </div>
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">User Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <div class="form-group">
+            <div class="input-group mb-3">
+
+              <div class="row w-100">
+                <div class="col-5 input-group-prepend w-100">
+                  <span class="input-group-text w-100" id="basic-addon1">VPA</span>
+                </div>
+                <div class="col-7 input-group-prepend w-100">
+                  <input id='vpa' type="text" class="form-control w-100" placeholder="weeb@oksbi" aria-label="Username"
+                    aria-describedby="basic-addon1">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group mb-3">
+
+              <div class="row w-100">
+                <div class="col-5 input-group-prepend w-100">
+                  <span class="input-group-text w-100" id="basic-addon1">IFSC code</span>
+                </div>
+                <div class="col-7 input-group-prepend w-100">
+                  <input id='ifsc' type="text" class="form-control w-100" placeholder="HDFC0022" aria-label="Username"
+                    aria-describedby="basic-addon1">
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <div class="input-group mb-3">
+
+              <div class="row w-100">
+                <div class="col-5 input-group-prepend w-100">
+                  <span class="input-group-text w-100" id="basic-addon1">Account number</span>
+                </div>
+                <div class="col-7 input-group-prepend w-100">
+                  <input id='acc' type="text" class="form-control w-100" placeholder="1122AA99DD00"
+                    aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group mb-3">
+
+              <div class="row w-100">
+                <div class="col-5 input-group-prepend w-100">
+                  <span class="input-group-text w-100" id="basic-addon1">Account TYPE</span>
+                </div>
+                <div class="col-7 input-group-prepend w-100">
+                  <select id="type" class="form-control">
+                    <option selected="">SAVINGS</option>
+                    <option>CURRENT</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" onclick="updateLocal()" class="btn btn-primary center">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
@@ -304,6 +384,21 @@
       var data = [];
       data = JSON.stringify(data);
       localStorage.setItem("LocalData", data);
+    }
+    if (localStorage.getItem("details") == null) {
+      $("#myModal").modal()
+    }
+
+    function updateLocal() {
+      var details = {
+        vpa: $("#vpa").val(),
+        ifsc: $("#ifsc").val(),
+        acc: $("#acc").val(),
+        type: $("#type option:selected").text()
+      }
+      console.log(details)
+      localStorage.setItem("details", details);
+
     }
 
     function scan() {
