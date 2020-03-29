@@ -242,7 +242,7 @@
           </div>
           <!-- End Page Header -->
           <div class="row mb-2 mt-5">
-            <div onclick="sendSMS()" class="col">
+            <div onclick="openVpa()" class="col">
               <div class="bg-primary rounded text-white text-center p-3"
                 style="box-shadow: inset 0 0 5px rgba(0,0,0,.2);"><br><i class="fas fa-at fa-5x"></i><br><br>
                 <h5 style="color: white;">Pay via VPA</h5>
@@ -252,6 +252,14 @@
               <div onclick="scan()" class="bg-primary rounded text-white text-center p-3"
                 style="box-shadow: inset 0 0 5px rgba(0,0,0,.2);"><br><i class="fas fa-qrcode fa-5x"></i><br><br>
                 <h5 style="color: white;">Pay via QR</h5>
+              </div>
+            </div>
+          </div>
+          <div class="row center mb-2 mt-5">
+            <div onclick="openMobile()" class="col">
+              <div class="bg-primary rounded text-white text-center p-3"
+                style="box-shadow: inset 0 0 5px rgba(0,0,0,.2);"><br><i class="fas fa-mobile fa-5x"></i><br><br>
+                <h5 style="color: white;">Pay via Mobile Number</h5>
               </div>
             </div>
           </div>
@@ -265,6 +273,9 @@
       <div class="modal-content" style="height:90vh;">
         <div class="modal-header mb-5">
           <h5 class="modal-title" id="exampleModalLabel">1 Time Registration</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div class="modal-body mt-5">
 
@@ -276,7 +287,7 @@
                   <span class="input-group-text w-100" id="basic-addon1">VPA</span>
                 </div>
                 <div class="col-7 input-group-prepend w-100">
-                  <input id='vpa' type="text" class="form-control w-100" placeholder="weeb@oksbi" aria-label="Username"
+                  <input id="senderVpa" type="text" class="form-control w-100" placeholder="weeb@oksbi" aria-label="Username"
                     aria-describedby="basic-addon1">
                 </div>
               </div>
@@ -331,7 +342,120 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" onclick="updateLocal()" class="btn btn-primary center">Save changes</button>
+          <button type="button" onclick="updateLocal()" data-dismiss="modal" class="btn btn-primary center">Save
+            changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="pinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Transaction</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <div class="form-group">
+            <div class="input-group mb-3">
+
+              <div class="row w-100">
+                <div class="col-5 input-group-prepend w-100">
+                  <span class="input-group-text w-100" id="basic-addon1">Rs.</span>
+                </div>
+                <div class="col-7 input-group-prepend w-100">
+                  <input class="form-control" id="amt" pattern="[0-9]*" inputmode="numeric">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group mb-3">
+
+              <div class="row w-100">
+                <div class="col-5 input-group-prepend w-100">
+                  <span class="input-group-text w-100" id="basic-addon1">PIN</span>
+                </div>
+                <div class="col-7 input-group-prepend w-100">
+                  <input type="password" class="form-control" id="pin" pattern="[0-9][0-9][0-9][0-9][0-9][0-9]"
+                    inputmode="numeric">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="donePin()" data-dismiss="modal">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="mobileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Recipient's Mobile</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <div class="form-group">
+            <div class="input-group mb-3">
+
+              <div class="row w-100">
+                <div class="col-5 input-group-prepend w-100">
+                  <span class="input-group-text w-100" id="basic-addon1">Mobile No.</span>
+                </div>
+                <div class="col-7 input-group-prepend w-100">
+                  <input class="form-control" id="mobile" pattern="[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"
+                    inputmode="numeric">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="doneMobile()" data-dismiss="mobileModal">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="vpaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Recipient's VPA</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <div class="form-group">
+            <div class="input-group mb-3">
+
+              <div class="row w-100">
+                <div class="col-5 input-group-prepend w-100">
+                  <span class="input-group-text w-100" id="basic-addon1">VPA</span>
+                </div>
+                <div class="col-7 input-group-prepend w-100">
+                  <input class="form-control" id="vpa" pattern="[0-9]*" inputmode="numeric">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="doneVpa()" data-dismiss="modal">Done</button>
         </div>
       </div>
     </div>
@@ -355,27 +479,89 @@
 
 
   <script>
-    if (localStorage.getItem("LocalData") == null) {
-      var data = [];
-      data = JSON.stringify(data);
-      localStorage.setItem("LocalData", data);
-    }
+    var details
     if (localStorage.getItem("details") == null) {
       $("#myModal").modal()
     }
     else {
-      var details = localStorage.getItem("details")
+      details = JSON.parse(localStorage.getItem("details"))
     }
 
     function updateLocal() {
-      var details = {
+      details = {
         vpa: $("#vpa").val(),
         ifsc: $("#ifsc").val(),
         acc: $("#acc").val(),
         type: $("#type option:selected").text()
       }
       console.log(details)
-      localStorage.setItem("details", details);
+      localStorage.setItem("details", JSON.stringify(details));
+
+    }
+    var recipient
+    function extractRecipient(str) {
+      recipient = Array();
+      let vpa = (str.split('?pa=')[1]).split('&pn=')[0];
+      recipient["vpa"] = vpa;
+      console.log(vpa)
+    }
+
+    function askPin() {
+      $("#pinModal").modal()
+    }
+    var pin
+    var amt
+    function donePin() {
+      pin = $("#pin").val()
+      amt = $("#amt").val()
+      sendMoney()
+
+    }
+
+    function openMobile() {
+      $("#mobileModal").modal()
+    }
+
+    function openVpa() {
+      $("#vpaModal").modal()
+    }
+
+    function doneMobile() {
+      mobile = $('#mobile').val()
+      askPin()
+    }
+    var mobile
+    var senderVpa 
+    function doneVpa() {
+      senderVpa = $('#senderVpa').val()
+      console.log(senderVpa)
+      askPin()
+    }
+    function sendMoney() {
+      // paymentDetails = {
+      //   payer_address: "alpha@dose",
+      //   recipient_address: "manasu@weaboo",
+      //   amount: 6969,
+      //   pin: 91169,
+      //   recipient_phone: "+919438440614", //only one of this or payer_address would be set
+      //   ifsc_code: "SBIN696969",
+      //   account_type: "CURRENT",
+      //   account_number: 30617312009
+      // }
+      // Now do this shit
+      //if (typeof recipient !== 'undefined') {
+      let paymentDetails = {
+        payer_address: details.vpa,
+        recipient_address: senderVpa,
+        amount: amt,
+        pin: pin,
+        recipient_phone: mobile, //only one of this or payer_address would be set
+        ifsc_code: details.ifsc,
+        account_type: details.type,
+        account_number: details.acc
+      };
+      console.log(JSON.stringify(paymentDetails));
+      sendSMS("+14109819498", JSON.stringify(paymentDetails))
 
     }
 
@@ -389,6 +575,8 @@
                 "Format: " + result.format + "\n" +
                 "Cancelled: " + result.cancelled);
               console.log(result.text);
+              extractRecipient(result.text);
+              askPin();
             }
           }
         },
@@ -404,9 +592,9 @@
         }
       );
     }
-    function sendSMS() {
-      var number = '111111'; /* iOS: ensure number is actually a string */
-      var message = 'Yo Chika!';
+    function sendSMS(number, message) {
+      //var number = '111111'; /* iOS: ensure number is actually a string */
+      //var message = 'Yo Chika!';
       console.log("number=" + number + ", message= " + message);
 
       //CONFIGURATION
