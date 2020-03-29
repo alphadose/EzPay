@@ -256,42 +256,17 @@
             </div>
           </div>
         </div>
-        <footer class="main-footer d-flex p-2 px-3 bg-white border-top">
-          <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Products</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Blog</a>
-            </li>
-          </ul>
-          <span class="copyright ml-auto my-auto mr-2">Copyright © 2018
-            <a href="https://designrevision.com" rel="nofollow">DesignRevision</a>
-          </span>
-        </footer>
       </main>
     </div>
   </div>
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">User Details</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+    <div class="modal-dialog" style="height:90vh;" role="document">
+      <div class="modal-content" style="height:90vh;">
+        <div class="modal-header mb-5">
+          <h5 class="modal-title" id="exampleModalLabel">1 Time Registration</h5>
         </div>
-        <div class="modal-body">
+        <div class="modal-body mt-5">
 
           <div class="form-group">
             <div class="input-group mb-3">
@@ -387,6 +362,9 @@
     }
     if (localStorage.getItem("details") == null) {
       $("#myModal").modal()
+    }
+    else {
+      var details = localStorage.getItem("details")
     }
 
     function updateLocal() {
