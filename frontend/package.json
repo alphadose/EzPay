@@ -16,6 +16,7 @@
     "browser-sync": "^2.24.5",
     "cordova-android": "^8.1.0",
     "cordova-browser": "^6.0.0",
+    "cordova-plugin-sms-receive": "^1.0.2",
     "cordova-sms-plugin": "^1.0.0",
     "gulp": "^3.9.1",
     "gulp-clean-css": "^3.9.4",
@@ -33,7 +34,8 @@
       "phonegap-plugin-barcodescanner": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
       },
-      "cordova-sms-plugin": {}
+      "cordova-sms-plugin": {},
+      "cordova-plugin-sms-receive": {}
     },
     "platforms": [
       "android",
