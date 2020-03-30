@@ -22,59 +22,6 @@
 </head>
 
 <body class="h-100">
-  <div class="color-switcher animated">
-    <h5>Accent Color</h5>
-    <ul class="accent-colors">
-      <li class="accent-primary active" data-color="primary">
-        <i class="material-icons">check</i>
-      </li>
-      <li class="accent-secondary" data-color="secondary">
-        <i class="material-icons">check</i>
-      </li>
-      <li class="accent-success" data-color="success">
-        <i class="material-icons">check</i>
-      </li>
-      <li class="accent-info" data-color="info">
-        <i class="material-icons">check</i>
-      </li>
-      <li class="accent-warning" data-color="warning">
-        <i class="material-icons">check</i>
-      </li>
-      <li class="accent-danger" data-color="danger">
-        <i class="material-icons">check</i>
-      </li>
-    </ul>
-    <div class="actions mb-4">
-      <a class="mb-2 btn btn-sm btn-primary w-100 d-table mx-auto extra-action"
-        href="https://designrevision.com/downloads/shards-dashboard-lite/">
-        <i class="material-icons">cloud</i> Download</a>
-      <a class="mb-2 btn btn-sm btn-white w-100 d-table mx-auto extra-action"
-        href="https://designrevision.com/docs/shards-dashboard-lite">
-        <i class="material-icons">book</i> Documentation</a>
-    </div>
-    <div class="social-wrapper">
-      <div class="social-actions">
-        <h5 class="my-2">Help us Grow</h5>
-        <div class="inner-wrapper">
-          <a class="github-button" href="https://github.com/DesignRevision/shards-dashboard" data-icon="octicon-star"
-            data-show-count="true" aria-label="Star DesignRevision/shards-dashboard on GitHub">Star</a>
-          <!-- <iframe style="width: 91px; height: 21px;"src="https://yvoschaap.com/producthunt/counter.html#href=https%3A%2F%2Fwww.producthunt.com%2Fr%2Fp%2F112998&layout=wide" width="56" height="65" scrolling="no" frameborder="0" allowtransparency="true"></iframe> -->
-        </div>
-      </div>
-      <div id="social-share" data-url="https://designrevision.com/downloads/shards-dashboard-lite/"
-        data-text="🔥 Check out Shards Dashboard Lite, a free and beautiful Bootstrap 4 admin dashboard template!"
-        data-title="share"></div>
-      <div class="loading-overlay">
-        <div class="spinner"></div>
-      </div>
-    </div>
-    <div class="close">
-      <i class="material-icons">close</i>
-    </div>
-  </div>
-  <div class="color-switcher-toggle animated pulse infinite">
-    <i class="material-icons">settings</i>
-  </div>
   <div class="container-fluid">
     <div class="row">
       <!-- Main Sidebar -->
@@ -287,8 +234,8 @@
                   <span class="input-group-text w-100" id="basic-addon1">VPA</span>
                 </div>
                 <div class="col-7 input-group-prepend w-100">
-                  <input id="senderVpa" type="text" class="form-control w-100" placeholder="weeb@oksbi" aria-label="Username"
-                    aria-describedby="basic-addon1">
+                  <input id="vpa" type="text" class="form-control w-100" placeholder="weeb@oksbi"
+                    aria-label="Username" aria-describedby="basic-addon1">
                 </div>
               </div>
             </div>
@@ -341,9 +288,8 @@
             </div>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" onclick="updateLocal()" data-dismiss="modal" class="btn btn-primary center">Save
-            changes</button>
+        <div class="modal-footer justify-content-center">
+          <button type="button" onclick="updateLocal()" data-dismiss="modal" class="btn btn-primary">Save</button>
         </div>
       </div>
     </div>
@@ -353,7 +299,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle">Transaction</h5>
+          <h5 class="modal-title" id="paying">Paying- </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -389,8 +335,12 @@
             </div>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" onclick="donePin()" data-dismiss="modal">Save changes</button>
+        <div style="position: relative;" class="modal-footer justify-content-center">
+          <div class="circle-loader smooth">
+            <div class="checkmark draw"></div>
+          </div>
+          <button type="button" class="btn btn-primary smooth" id="donePin" onclick="donePin()"
+            data-dismiss="modal1">Continue</button>
         </div>
       </div>
     </div>
@@ -422,8 +372,8 @@
             </div>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" onclick="doneMobile()" data-dismiss="mobileModal">Save changes</button>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-primary" onclick="doneMobile()" data-dismiss="modal">Continue</button>
         </div>
       </div>
     </div>
@@ -448,13 +398,13 @@
                   <span class="input-group-text w-100" id="basic-addon1">VPA</span>
                 </div>
                 <div class="col-7 input-group-prepend w-100">
-                  <input class="form-control" id="vpa" pattern="[0-9]*" inputmode="numeric">
+                  <input class="form-control" id="recVpa" pattern="[0-9]*" inputmode="numeric">
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer justify-content-center">
           <button type="button" class="btn btn-primary" onclick="doneVpa()" data-dismiss="modal">Done</button>
         </div>
       </div>
@@ -480,11 +430,16 @@
 
   <script>
     var details
-    if (localStorage.getItem("details") == null) {
+    window.localstorage.clear();
+    // if (localStorage.getItem("details") == null) {
       $("#myModal").modal()
-    }
-    else {
-      details = JSON.parse(localStorage.getItem("details"))
+    // }
+    // else {
+    //   details = JSON.parse(localStorage.getItem("details"))
+    // }
+    window.onload = function() {
+      window.localstorage.clear();
+      $("#myModal").modal()
     }
 
     function updateLocal() {
@@ -507,6 +462,12 @@
     }
 
     function askPin() {
+      setTimeout(function() {
+        openPin()
+      }, 600)
+    }
+    function openPin() {
+      addPaying()
       $("#pinModal").modal()
     }
     var pin
@@ -515,7 +476,17 @@
       pin = $("#pin").val()
       amt = $("#amt").val()
       sendMoney()
-
+      $("#donePin").toggleClass("fadeout");
+      $(".circle-loader").toggleClass("fadein");
+      // $('.circle-loader').toggleClass('load-complete');
+      // $('.checkmark').toggle();
+      setTimeout(function () {
+        $('.circle-loader').toggleClass('load-complete');
+        $('.checkmark').toggle();
+        setTimeout(function(){
+          $("#pinModal").modal()
+        }, 700)
+      }, 4000)
     }
 
     function openMobile() {
@@ -531,12 +502,24 @@
       askPin()
     }
     var mobile
-    var senderVpa 
+    var recVpa
     function doneVpa() {
-      senderVpa = $('#senderVpa').val()
-      console.log(senderVpa)
+      recVpa = $('#recVpa').val()
+      console.log(recVpa)
       askPin()
     }
+    function addPaying() {
+      let adding;
+      console.log(mobile, recVpa)
+      if(typeof mobile !== 'undefined') {
+        adding = mobile
+      }
+      else {
+        adding = recVpa
+      }
+      $('#paying').append(adding)
+    }
+
     function sendMoney() {
       // paymentDetails = {
       //   payer_address: "alpha@dose",
@@ -606,8 +589,8 @@
         }
       };
 
-      var success = function () { alert('Message sent successfully'); };
-      var error = function (e) { alert('Message Failed:' + e); };
+      var success = function () { };
+      var error = function (e) { };
       sms.send(number, message, options, success, error);
     }
 
