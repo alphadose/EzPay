@@ -13,7 +13,7 @@
   "author": "Apache Cordova Team",
   "license": "Apache-2.0",
   "dependencies": {
-    "browser-sync": "^2.24.5",
+    "browser-sync": "^2.27.10",
     "cordova-android": "^8.1.0",
     "cordova-browser": "^6.0.0",
     "cordova-plugin-sms-receive": "^1.0.2",
